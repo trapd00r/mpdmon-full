@@ -13,7 +13,10 @@ my $mpd = Audio::MPD->new;
 
 sub monitor {
   my $np = "";
-  my @c = ("\033[0m", "\033[31m", "\033[33m", "\033[34;1m");
+  my @c;
+  for(my $i=0;$i<256;$i++) {
+    push(@c, "\033[38;5;$i"."m");
+  }
   while(1) {
     my $current = $mpd->current;
     my $output = $mpd->current->file;
